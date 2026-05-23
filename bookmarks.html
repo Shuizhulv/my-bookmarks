@@ -192,9 +192,11 @@ const GIT_BRANCH = 'main';
 const BOOKMARK_FILE = 'bookmarks.json';
 
 // ============================================================
-// Build raw URL
+// Smart URL: relative on GitHub Pages (no CORS), raw otherwise
 // ============================================================
+const IS_GH_PAGES = window.location.hostname.includes('github.io');
 const RAW_URL = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${GIT_BRANCH}/${BOOKMARK_FILE}`;
+const BOOKMARKS_URL = IS_GH_PAGES ? `./${BOOKMARK_FILE}` : RAW_URL;
 
 // ============================================================
 // DOMAIN HELPERS
@@ -531,18 +533,18 @@ async function fetchAndUpdate() {
     content.innerHTML = `<div class="error-box">
       <strong>⚙️ 请先配置 GitHub 信息</strong><br><br>
       打开此 HTML 文件，修改顶部的 <code>GITHUB_USER</code> 和 <code>GITHUB_REPO</code> 为你的实际值。<br><br>
-      当前数据源：<code>${RAW_URL}</code>
+      当前数据源：<code>${BOOKMARKS_URL}</code>
     </div>`;
     return;
   }
 
   try {
-    const resp = await fetch(RAW_URL, { cache: 'no-cache' });
+    const resp = await fetch(BOOKMARKS_URL, { cache: 'no-cache' });
     if (!resp.ok) {
       if (resp.status === 404) {
-        throw new Error(`文件未找到 (404)：<br><code>${RAW_URL}</code><br><br>请确认：<br>1. 仓库是否为 <strong>公开</strong>（Public）<br>2. 文件名是否正确<br>3. Floccus 是否已完成首次同步`);
+        throw new Error(`文件未找到 (404)：<br><code>${BOOKMARKS_URL}</code><br><br>请确认：<br>1. 仓库是否为 <strong>公开</strong>（Public）<br>2. 文件名是否正确<br>3. Floccus 是否已完成首次同步`);
       }
-      throw new Error(`GitHub 返回 HTTP ${resp.status}：<br><code>${RAW_URL}</code>`);
+      throw new Error(`GitHub 返回 HTTP ${resp.status}：<br><code>${BOOKMARKS_URL}</code>`);
     }
 
     const rawText = await resp.text();
@@ -569,7 +571,7 @@ async function fetchAndUpdate() {
     content.innerHTML = `<div class="error-box">
       <strong>❌ 加载失败</strong><br><br>
       ${err.message}<br><br>
-      <small>数据源：<code>${RAW_URL}</code></small>
+      <small>数据源：<code>${BOOKMARKS_URL}</code></small>
     </div>`;
   }
 }
