@@ -189,7 +189,7 @@ const GITHUB_REPO = 'my-bookmarks';
 // 分支名（默认 main）
 const GIT_BRANCH = 'main';
 // Floccus 同步的文件名（在 Floccus 设置里配置的）
-const BOOKMARK_FILE = 'bookmarks.json';
+const BOOKMARK_FILE = 'bookmarks.xbel';
 
 // ============================================================
 // Smart URL: relative on GitHub Pages (no CORS), raw otherwise
@@ -286,21 +286,110 @@ function tryParseChromiumFormat(data) {
 }
 
 // ============================================================
+// XBEL FORMAT PARSER (Floccus default)
+// ============================================================
+function tryParseXbelFormat(rawText) {
+  if (!rawText.includes('<xbel') && !rawText.includes('<XBEL')) return null;
+  try {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(rawText, 'text/xml');
+    const err = doc.querySelector('parsererror');
+    if (err) return null;
+
+    const result = [];
+    function walkFolder(node, path) {
+      for (const child of node.children) {
+        if (child.tagName === 'folder') {
+          const titleEl = child.querySelector(':scope > title');
+          const folderName = titleEl ? titleEl.textContent.trim() : '(未命名)';
+          const newPath = path ? `${path} > ${folderName}` : folderName;
+          walkFolder(child, newPath);
+        } else if (child.tagName === 'bookmark') {
+          const href = child.getAttribute('href') || '';
+          const titleEl = child.querySelector(':scope > title');
+          const title = titleEl ? titleEl.textContent.trim() : href;
+          if (href && title) {
+            result.push({ Name: title, Url: href, Path: path || '书签栏' });
+          }
+        }
+      }
+    }
+    const xbel = doc.querySelector('xbel');
+    if (xbel) walkFolder(xbel, '');
+    return result.length > 0 ? result : null;
+  } catch (e) { return null; }
+}
+
+// ============================================================
+// NETSCAPE HTML BOOKMARKS PARSER
+// ============================================================
+function tryParseNetscapeFormat(rawText) {
+  if (!rawText.includes('<DT><A') && !rawText.includes('<dt><a')) return null;
+  try {
+    const result = [];
+    const stack = [''];
+    // Simple regex-based parser for Netscape bookmark format
+    const dlPattern = /<DL[^>]*>/gi;
+    const dlClosePattern = /<\/DL>/gi;
+    const folderPattern = /<DT><H3[^>]*>([^<]+)<\/H3>/gi;
+    const bookmarkPattern = /<DT><A[^>]*HREF="([^"]*)"[^>]*>([^<]*)<\/A>/gi;
+
+    // More robust: use DOMParser
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(rawText, 'text/html');
+    const dts = doc.querySelectorAll('dt');
+    let currentPath = '';
+
+    dts.forEach(dt => {
+      const h3 = dt.querySelector('h3');
+      const a = dt.querySelector('a');
+      const dl = dt.querySelector('dl');
+
+      if (h3) {
+        const name = h3.textContent.trim();
+        if (name && name !== 'Bookmarks' && name !== '书签') {
+          currentPath = currentPath ? `${currentPath} > ${name}` : name;
+        }
+      }
+      if (a) {
+        const href = a.getAttribute('href') || '';
+        const name = a.textContent.trim();
+        if (href && name) {
+          result.push({ Name: name, Url: href, Path: currentPath || '书签栏' });
+        }
+      }
+    });
+
+    return result.length > 0 ? result : null;
+  } catch (e) { return null; }
+}
+
+// ============================================================
 // SMART PARSER — try multiple formats
 // ============================================================
 function parseBookmarks(rawText) {
+  // Try XBEL (XML)
+  let bookmarks = tryParseXbelFormat(rawText);
+  if (bookmarks) return bookmarks;
+
+  // Try Netscape HTML
+  bookmarks = tryParseNetscapeFormat(rawText);
+  if (bookmarks) return bookmarks;
+
+  // Try JSON-based formats
   let data;
   try {
     data = JSON.parse(rawText);
   } catch (e) {
-    throw new Error('书签文件不是有效的 JSON 格式。请检查 Floccus 配置中文件后缀是否为 .json');
+    // Not JSON, already tried XML/HTML
+    const preview = rawText.substring(0, 100).replace(/</g, '&lt;');
+    throw new Error(`无法识别的书签数据格式。请确保 Floccus 文件格式为 XBEL。<br>文件头预览：<br><code>${preview}...</code>`);
   }
 
   // Empty array = no bookmarks synced yet (not an error)
   if (Array.isArray(data) && data.length === 0) return [];
 
-  // Try each format
-  let bookmarks = parseFlatFormat(data);
+  bookmarks = parseFlatFormat(data);
   if (bookmarks) return bookmarks;
 
   bookmarks = tryParseFloccusFormat(data);
@@ -309,7 +398,6 @@ function parseBookmarks(rawText) {
   bookmarks = tryParseChromiumFormat(data);
   if (bookmarks) return bookmarks;
 
-  // Unknown format — show what we got
   const preview = JSON.stringify(data).substring(0, 200);
   throw new Error(`无法识别的书签数据格式。数据预览：<br><code>${preview}...</code>`);
 }
