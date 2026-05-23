@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>📑 我的书签</title>
+<style>
+  :root {
+    --bg: #f5f5f7;
+    --card-bg: #ffffff;
+    --text: #1d1d1f;
+    --text-secondary: #86868b;
+    --accent: #0071e3;
+    --accent-light: #e8f0fe;
+    --tag-bg: #f0f0f5;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08);
+    --radius: 12px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Header */
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(245,245,247,0.85); backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 12px 16px; border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .header h1 { font-size: 20px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+  .header .stats { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+
+  /* Search */
+  .search-wrap {
+    position: relative; margin: 12px 16px;
+  }
+  .search-wrap input {
+    width: 100%; padding: 12px 40px 12px 16px;
+    border: none; border-radius: var(--radius);
+    background: var(--card-bg); box-shadow: var(--shadow);
+    font-size: 15px; color: var(--text); outline: none;
+    -webkit-appearance: none;
+  }
+  .search-wrap input::placeholder { color: #c7c7cc; }
+  .search-clear {
+    position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+    width: 24px; height: 24px; border-radius: 50%;
+    background: #e5e5ea; border: none; cursor: pointer;
+    font-size: 14px; display: none; align-items: center; justify-content: center;
+    color: #8e8e93;
+  }
+  .search-clear.visible { display: flex; }
+
+  /* Content */
+  .content { padding: 0 16px 16px; }
+  .category { margin-bottom: 4px; }
+  .cat-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 4px; cursor: pointer; user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .cat-header:active { opacity: 0.6; }
+  .cat-icon {
+    width: 28px; height: 28px; border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; flex-shrink: 0;
+  }
+  .cat-icon.palette-0 { background: #e8f0fe; color: #1967d2; }
+  .cat-icon.palette-1 { background: #fce8e6; color: #c5221f; }
+  .cat-icon.palette-2 { background: #e6f4ea; color: #137333; }
+  .cat-icon.palette-3 { background: #fef7e0; color: #f9ab00; }
+  .cat-icon.palette-4 { background: #f3e8fd; color: #7b1fa2; }
+  .cat-icon.palette-5 { background: #e0f2f1; color: #00695c; }
+  .cat-icon.palette-6 { background: #fce4ec; color: #c62828; }
+  .cat-icon.palette-7 { background: #e8eaf6; color: #283593; }
+  .cat-name { font-size: 15px; font-weight: 500; flex: 1; }
+  .cat-badge {
+    font-size: 12px; background: var(--tag-bg); color: var(--tag-text);
+    padding: 2px 8px; border-radius: 10px; font-weight: 500;
+  }
+  .cat-arrow { font-size: 10px; color: #c7c7cc; transition: transform 0.2s; }
+  .cat-arrow.open { transform: rotate(90deg); }
+
+  /* Hierarchy indentation */
+  .cat-header.indent-0 { padding-left: 0; }
+  .cat-header.indent-1 { padding-left: 20px; }
+  .cat-header.indent-2 { padding-left: 40px; }
+  .cat-header.indent-3 { padding-left: 60px; }
+  .cat-header.indent-0 .cat-icon { width:28px; height:28px; border-radius:7px; }
+  .cat-header.indent-1 .cat-icon { width:24px; height:24px; border-radius:6px; font-size:12px; }
+  .cat-header.indent-2 .cat-icon { width:20px; height:20px; border-radius:5px; font-size:10px; }
+  .cat-header.indent-3 .cat-icon { width:18px; height:18px; border-radius:4px; font-size:9px; }
+  .cat-header.indent-0 .cat-name { font-size:15px; }
+  .cat-header.indent-1 .cat-name { font-size:14px; }
+  .cat-header.indent-2 .cat-name { font-size:13px; }
+  .cat-header.indent-3 .cat-name { font-size:13px; }
+
+  /* Bookmarks */
+  .bookmarks { display: none; }
+  .bookmarks.open { display: block; }
+  .bookmarks.indent-1 { padding-left: 20px; }
+  .bookmarks.indent-2 { padding-left: 40px; }
+  .bookmarks.indent-3 { padding-left: 60px; }
+
+  .bookmark-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 4px; margin-left: 38px;
+    text-decoration: none; color: var(--text);
+    border-radius: 8px; transition: background 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .bookmark-item:active { background: rgba(0,0,0,0.04); }
+  .bm-favicon {
+    width: 18px; height: 18px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .bm-favicon img { width: 16px; height: 16px; border-radius: 3px; }
+  .bm-name { font-size: 14px; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .bm-domain { font-size: 11px; color: var(--text-secondary); flex-shrink: 0; }
+
+  /* Loading & Empty */
+  .loading {
+    text-align: center; padding: 60px 20px; color: var(--text-secondary);
+  }
+  .loading .spinner {
+    width: 32px; height: 32px; border: 3px solid #e5e5ea;
+    border-top-color: var(--accent); border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 12px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .empty { text-align: center; padding: 60px 20px; color: var(--text-secondary); }
+  .empty .icon { font-size: 40px; margin-bottom: 12px; }
+
+  /* Error */
+  .error-box {
+    margin: 16px; padding: 16px; border-radius: var(--radius);
+    background: #fce8e6; color: #c5221f; font-size: 13px; line-height: 1.6;
+  }
+  .error-box code { background: rgba(0,0,0,0.08); padding: 1px 5px; border-radius: 3px; font-size: 12px; }
+
+  /* Footer */
+  .footer {
+    text-align: center; padding: 24px 16px; font-size: 11px;
+    color: var(--text-secondary); border-top: 1px solid rgba(0,0,0,0.06);
+    margin-top: 16px;
+  }
+  .footer .updated { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📑 我的书签</h1>
+  <div class="stats">
+    共 <span id="total-count">-</span> 个书签 · 显示 <span id="visible-count">-</span> 个
+  </div>
+</div>
+
+<div class="search-wrap">
+  <input type="text" id="search" placeholder="搜索书签、网址或分类..." autocomplete="off">
+  <button class="search-clear" id="search-clear">✕</button>
+</div>
+
+<div class="content" id="content">
+  <div class="loading">
+    <div class="spinner"></div>
+    <p>正在加载书签...</p>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="updated" id="footer-updated"></div>
+  由 Tabbit + Floccus 自动同步
+</div>
+
+<script>
+// ============================================================
+// 🔧 配置 — 部署前修改这里
+// ============================================================
+// 你的 GitHub 用户名
+const GITHUB_USER = 'Shuizhulv';
+// 存放书签的仓库名（Floccus 同步到的那个仓库）
+const GITHUB_REPO = 'my-bookmarks';
+// 分支名（默认 main）
+const GIT_BRANCH = 'main';
+// Floccus 同步的文件名（在 Floccus 设置里配置的）
+const BOOKMARK_FILE = 'bookmarks.json';
+
+// ============================================================
+// Build raw URL
+// ============================================================
+const RAW_URL = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${GIT_BRANCH}/${BOOKMARK_FILE}`;
+
+// ============================================================
+// DOMAIN HELPERS
+// ============================================================
+function getDomain(url) {
+  try { const u = new URL(url); return u.hostname.replace('www.', ''); }
+  catch { return url; }
+}
+
+function faviconHTML(url) {
+  const domain = getDomain(url);
+  return `<div class="bm-favicon"><img src="https://www.google.com/s2/favicons?domain=${domain}&sz=32" onerror="this.style.display='none'" alt=""></div>`;
+}
+
+// ============================================================
+// FLAT FORMAT PARSER (our [{Name,Url,Path}] format)
+// ============================================================
+function parseFlatFormat(data) {
+  if (!Array.isArray(data)) return null;
+  if (data.length === 0) return null;
+  if (!data[0].Name || !data[0].Url) return null;
+  return data;
+}
+
+// ============================================================
+// FLoccus TREE FORMAT PARSER
+// Floccus stores as nested tree: [{id,title,url?,children?}]
+// ============================================================
+function parseFloccusTree(nodes, parentPath) {
+  const result = [];
+  if (!nodes || !Array.isArray(nodes)) return result;
+
+  for (const node of nodes) {
+    const currentPath = parentPath ? `${parentPath} > ${node.title}` : node.title;
+    if (node.url) {
+      result.push({ Name: node.title, Url: node.url, Path: parentPath || '书签栏' });
+    }
+    if (node.children && node.children.length > 0) {
+      result.push(...parseFloccusTree(node.children, currentPath));
+    }
+  }
+  return result;
+}
+
+function tryParseFloccusFormat(data) {
+  // Floccus format: array of root nodes with title, children, url
+  if (Array.isArray(data) && data.length > 0 && data[0].title) {
+    const flat = parseFloccusTree(data, '');
+    if (flat.length > 0) return flat;
+  }
+  // Nested under a key like "children"
+  if (data && data.children && Array.isArray(data.children)) {
+    const flat = parseFloccusTree(data.children, '');
+    if (flat.length > 0) return flat;
+  }
+  return null;
+}
+
+// ============================================================
+// CHROMIUM BOOKMARKS FORMAT PARSER
+// ============================================================
+function parseChromiumRoot(rootNode, rootName) {
+  const result = [];
+  function walk(node, path) {
+    if (!node || !node.children) return;
+    for (const child of node.children) {
+      if (child.type === 'url') {
+        result.push({ Name: child.name, Url: child.url, Path: path });
+      } else if (child.type === 'folder') {
+        walk(child, path ? `${path} > ${child.name}` : child.name);
+      }
+    }
+  }
+  walk(rootNode, rootName);
+  return result;
+}
+
+function tryParseChromiumFormat(data) {
+  if (data && data.roots) {
+    const all = [];
+    if (data.roots.bookmark_bar) all.push(...parseChromiumRoot(data.roots.bookmark_bar, '书签栏'));
+    if (data.roots.other) all.push(...parseChromiumRoot(data.roots.other, '其他书签'));
+    if (data.roots.synced) all.push(...parseChromiumRoot(data.roots.synced, '移动设备书签'));
+    if (all.length > 0) return all;
+  }
+  return null;
+}
+
+// ============================================================
+// SMART PARSER — try multiple formats
+// ============================================================
+function parseBookmarks(rawText) {
+  let data;
+  try {
+    data = JSON.parse(rawText);
+  } catch (e) {
+    throw new Error('书签文件不是有效的 JSON 格式。请检查 Floccus 配置中文件后缀是否为 .json');
+  }
+
+  // Try each format
+  let bookmarks = parseFlatFormat(data);
+  if (bookmarks) return bookmarks;
+
+  bookmarks = tryParseFloccusFormat(data);
+  if (bookmarks) return bookmarks;
+
+  bookmarks = tryParseChromiumFormat(data);
+  if (bookmarks) return bookmarks;
+
+  // Unknown format — show what we got
+  const preview = JSON.stringify(data).substring(0, 200);
+  throw new Error(`无法识别的书签数据格式。数据预览：<br><code>${preview}...</code>`);
+}
+
+// ============================================================
+// BUILD TREE
+// ============================================================
+function buildTree(bookmarks) {
+  const root = { name: '', children: {}, bookmarks: [] };
+
+  bookmarks.forEach(bm => {
+    const parts = (bm.Path || '未分类').split(' > ');
+    let node = root;
+    parts.forEach(part => {
+      if (!node.children[part]) {
+        node.children[part] = { name: part, children: {}, bookmarks: [], depth: 0 };
+      }
+      node = node.children[part];
+    });
+    node.bookmarks.push(bm);
+  });
+
+  // Set depths
+  function setDepth(node, d) {
+    node.depth = d;
+    Object.values(node.children).forEach(c => setDepth(c, d + 1));
+    node.bookmarks.sort((a, b) => a.Name.localeCompare(b.Name, 'zh'));
+  }
+  Object.values(root.children).forEach(c => setDepth(c, 0));
+
+  return root;
+}
+
+// ============================================================
+// RENDER
+// ============================================================
+let treeRoot = null;
+
+function countTotal(node) {
+  let c = node.bookmarks.length;
+  Object.values(node.children).forEach(ch => { c += countTotal(ch); });
+  return c;
+}
+
+function renderNode(node, icons, depth) {
+  const entries = [];
+  const childFolders = Object.values(node.children).sort((a, b) => countTotal(b) - countTotal(a));
+
+  childFolders.forEach((child, idx) => {
+    const colorCls = `palette-${(idx + depth * 3) % 8}`;
+    const icon = icons[(idx + depth * 2) % icons.length];
+    const total = countTotal(child);
+    const indentCls = `indent-${Math.min(depth, 3)}`;
+
+    let html = `<div class="category">`;
+    html += `<div class="cat-header ${indentCls}" onclick="toggleCat(this)">`;
+    html += `<div class="cat-icon ${colorCls}">${icon}</div>`;
+    html += `<span class="cat-name">${child.name}</span>`;
+    html += `<span class="cat-badge">${total}</span>`;
+    html += `<span class="cat-arrow">▶</span>`;
+    html += `</div>`;
+
+    html += `<div class="bookmarks ${indentCls}">`;
+    child.bookmarks.forEach(bm => {
+      html += `<a class="bookmark-item" href="${bm.Url}" target="_blank" rel="noopener">
+        ${faviconHTML(bm.Url)}
+        <span class="bm-name">${bm.Name}</span>
+        <span class="bm-domain">${getDomain(bm.Url)}</span>
+      </a>`;
+    });
+    html += renderNode(child, icons, depth + 1);
+    html += `</div></div>`;
+    entries.push(html);
+  });
+
+  if (depth === 0) {
+    node.bookmarks.forEach(bm => {
+      entries.push(`<a class="bookmark-item" href="${bm.Url}" target="_blank" rel="noopener" style="margin-left:0">
+        ${faviconHTML(bm.Url)}
+        <span class="bm-name">${bm.Name}</span>
+        <span class="bm-domain">${getDomain(bm.Url)}</span>
+      </a>`);
+    });
+  }
+
+  return entries.join('');
+}
+
+function renderTree(root) {
+  const content = document.getElementById('content');
+  const total = countTotal(root);
+
+  if (total === 0) {
+    content.innerHTML = `<div class="empty"><div class="icon">🔍</div><p>没有找到匹配的书签</p></div>`;
+    document.getElementById('visible-count').textContent = '0';
+    return;
+  }
+
+  document.getElementById('visible-count').textContent = total;
+  const icons = ['📁', '🛠️', '📚', '📊', '📋', '💰', '📝', '🎯', '📌', '🔗'];
+  content.innerHTML = renderNode(root, icons, 0);
+}
+
+// ============================================================
+// TOGGLE
+// ============================================================
+function toggleCat(header) {
+  const bookmarks = header.nextElementSibling;
+  const arrow = header.querySelector('.cat-arrow');
+  bookmarks.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+// ============================================================
+// SEARCH
+// ============================================================
+let isSearching = false;
+let allBookmarksFlat = [];
+
+function searchRender(filtered) {
+  const content = document.getElementById('content');
+  if (filtered.length === 0) {
+    content.innerHTML = `<div class="empty"><div class="icon">🔍</div><p>没有找到匹配的书签</p></div>`;
+    document.getElementById('visible-count').textContent = '0';
+    return;
+  }
+  document.getElementById('visible-count').textContent = filtered.length;
+
+  const groups = {};
+  filtered.forEach(bm => {
+    const key = bm.Path || '未分类';
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(bm);
+  });
+
+  const entries = Object.entries(groups).sort((a, b) => b[1].length - a[1].length);
+  const icons = ['📁', '🛠️', '📚', '📊', '📋', '💰', '📝', '🎯', '📌', '🔗'];
+
+  content.innerHTML = entries.map(([path, items], i) => {
+    const depth = path.split(' > ').length - 1;
+    const colorCls = `palette-${i % 8}`;
+    const icon = icons[i % icons.length];
+    const folderName = path.split(' > ').slice(-1)[0];
+    items.sort((a, b) => a.Name.localeCompare(b.Name, 'zh'));
+
+    return `<div class="category">
+      <div class="cat-header indent-${Math.min(depth, 3)}" onclick="toggleCat(this)">
+        <div class="cat-icon ${colorCls}">${icon}</div>
+        <span class="cat-name">${folderName}</span>
+        <span class="cat-badge">${items.length}</span>
+        <span class="cat-arrow open">▶</span>
+      </div>
+      <div class="bookmarks indent-${Math.min(depth, 3)} open">
+        ${items.map(bm => `
+          <a class="bookmark-item" href="${bm.Url}" target="_blank" rel="noopener">
+            ${faviconHTML(bm.Url)}
+            <span class="bm-name">${bm.Name}</span>
+            <span class="bm-domain">${getDomain(bm.Url)}</span>
+          </a>
+        `).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+document.getElementById('search').addEventListener('input', function(e) {
+  const query = e.target.value.trim().toLowerCase();
+  const clearBtn = document.getElementById('search-clear');
+
+  if (query) {
+    clearBtn.classList.add('visible');
+    isSearching = true;
+    const filtered = allBookmarksFlat.filter(bm =>
+      bm.Name.toLowerCase().includes(query) ||
+      bm.Url.toLowerCase().includes(query) ||
+      (bm.Path || '').toLowerCase().includes(query)
+    );
+    searchRender(filtered);
+  } else {
+    clearBtn.classList.remove('visible');
+    isSearching = false;
+    renderTree(treeRoot);
+  }
+});
+
+document.getElementById('search-clear').addEventListener('click', function() {
+  document.getElementById('search').value = '';
+  this.classList.remove('visible');
+  isSearching = false;
+  renderTree(treeRoot);
+});
+
+// ============================================================
+// LOAD + CACHE
+// ============================================================
+const CACHE_KEY = 'tabbit_bookmarks_cache';
+const CACHE_TIME_KEY = 'tabbit_bookmarks_cache_time';
+const CACHE_TTL = 30 * 60 * 1000; // 30 minutes
+
+async function loadBookmarks() {
+  const content = document.getElementById('content');
+
+  // Check cache first
+  const cached = localStorage.getItem(CACHE_KEY);
+  const cachedTime = localStorage.getItem(CACHE_TIME_KEY);
+  if (cached && cachedTime && (Date.now() - parseInt(cachedTime)) < CACHE_TTL) {
+    try {
+      const bookmarks = JSON.parse(cached);
+      initPage(bookmarks);
+      document.getElementById('footer-updated').textContent = `缓存于 ${new Date(parseInt(cachedTime)).toLocaleString('zh-CN')}`;
+      // Refresh in background
+      fetchAndUpdate();
+      return;
+    } catch (e) { /* cache invalid, proceed to fetch */ }
+  }
+
+  await fetchAndUpdate();
+}
+
+async function fetchAndUpdate() {
+  const content = document.getElementById('content');
+
+  if (GITHUB_USER === '你的GitHub用户名') {
+    content.innerHTML = `<div class="error-box">
+      <strong>⚙️ 请先配置 GitHub 信息</strong><br><br>
+      打开此 HTML 文件，修改顶部的 <code>GITHUB_USER</code> 和 <code>GITHUB_REPO</code> 为你的实际值。<br><br>
+      当前数据源：<code>${RAW_URL}</code>
+    </div>`;
+    return;
+  }
+
+  try {
+    const resp = await fetch(RAW_URL, { cache: 'no-cache' });
+    if (!resp.ok) {
+      if (resp.status === 404) {
+        throw new Error(`文件未找到 (404)：<br><code>${RAW_URL}</code><br><br>请确认：<br>1. 仓库是否为 <strong>公开</strong>（Public）<br>2. 文件名是否正确<br>3. Floccus 是否已完成首次同步`);
+      }
+      throw new Error(`GitHub 返回 HTTP ${resp.status}：<br><code>${RAW_URL}</code>`);
+    }
+
+    const rawText = await resp.text();
+    const bookmarks = parseBookmarks(rawText);
+    const now = Date.now();
+
+    localStorage.setItem(CACHE_KEY, JSON.stringify(bookmarks));
+    localStorage.setItem(CACHE_TIME_KEY, String(now));
+
+    initPage(bookmarks);
+    document.getElementById('footer-updated').textContent = `更新于 ${new Date(now).toLocaleString('zh-CN')}`;
+  } catch (err) {
+    // Fallback to cache if fetch fails
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (cached) {
+      try {
+        const bookmarks = JSON.parse(cached);
+        initPage(bookmarks);
+        document.getElementById('footer-updated').textContent = `⚠️ 离线模式 — ${err.message.substring(0, 50)}`;
+        return;
+      } catch (e) { /* cache invalid */ }
+    }
+
+    content.innerHTML = `<div class="error-box">
+      <strong>❌ 加载失败</strong><br><br>
+      ${err.message}<br><br>
+      <small>数据源：<code>${RAW_URL}</code></small>
+    </div>`;
+  }
+}
+
+function initPage(bookmarks) {
+  allBookmarksFlat = bookmarks;
+  treeRoot = buildTree(bookmarks);
+  renderTree(treeRoot);
+  document.getElementById('total-count').textContent = bookmarks.length;
+}
+
+// ============================================================
+// START
+// ============================================================
+loadBookmarks();
+</script>
+</body>
+</html>
