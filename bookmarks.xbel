@@ -1,1 +1,420 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE xbel><xbel version="1.0"></xbel>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xbel PUBLIC "+//IDN python.org//DTD XML Bookmark Exchange Language 1.0//EN//XML" "http://pyxml.sourceforge.net/topics/dtds/xbel.dtd">
+<xbel version="1.0">
+<!--- highestId :138: for Floccus bookmark sync browser extension -->
+
+<folder id="1">
+  <title>Bookmarks Bar</title>
+  <folder id="3">
+    <title>工具</title>
+    <bookmark href="https://dho2un.mynocode.host/" id="21">
+      <title>json解析</title>
+    </bookmark>
+    <bookmark href="https://bi.sankuai.com/sql/edit?projectId=106061" id="22">
+      <title>SQL 查询</title>
+    </bookmark>
+    <bookmark href="http://poi.sankuai.com/pc/func/log" id="23">
+      <title>POI日志 - PDC 公共服务门户</title>
+    </bookmark>
+    <folder id="24">
+      <title>报表工具</title>
+      <bookmark href="http://data.sankuai.com/wanxiang/#/upload/datasheet/poi-audit" id="88">
+        <title>数据上传</title>
+      </bookmark>
+      <bookmark href="https://xt.sankuai.com/tableop/alter_table" id="89">
+        <title>上传数据增加字段</title>
+      </bookmark>
+      <bookmark href="https://bi.sankuai.com/dashboard/156712" id="90">
+        <title>大模型数据看板</title>
+      </bookmark>
+      <bookmark href="https://bi.sankuai.com/dashboard/172646" id="91">
+        <title>POI审核自动化率看板（统一版）</title>
+      </bookmark>
+      <bookmark href="https://wolf-view.waimai.test.sankuai.com/template/poi_data_alarm/alarm_list?owner=Chuck&amp;startDate=now&amp;endDate=now%2B3d&amp;category=1&amp;priority=2&amp;size=10&amp;page=1" id="92">
+        <title>预警</title>
+      </bookmark>
+      <bookmark href="https://bi.sankuai.com/portal/23354?type=link&amp;id=https%3A%2F%2Fkm.sankuai.com%2Fpage%2F1272273629" id="93">
+        <title>数据大盘-谢静</title>
+      </bookmark>
+      <bookmark href="https://bi.sankuai.com/portal/23354?type=dashboard&amp;id=108143" id="94">
+        <title>智能外呼报表</title>
+      </bookmark>
+      <bookmark href="https://bi.sankuai.com/dashboard/65639" id="95">
+        <title>POI新增报错自动化率报表</title>
+      </bookmark>
+      <bookmark href="https://bi.sankuai.com/dashboard/126134" id="96">
+        <title>旅游数据看板</title>
+      </bookmark>
+      <bookmark href="https://bi.sankuai.com/dashboard/156712/" id="97">
+        <title>POI字段更新审核看板（建设中）</title>
+      </bookmark>
+      <bookmark href="https://bi.sankuai.com/portal/22310" id="98">
+        <title>数据大盘-内部</title>
+      </bookmark>
+      <bookmark href="https://bi.sankuai.com/portal/20811?type=dashboard&amp;id=39354" id="99">
+        <title>数据大盘</title>
+      </bookmark>
+      <bookmark href="https://bi.sankuai.com/dashboard/9021" id="100">
+        <title>境外POI新增报错报重统计</title>
+      </bookmark>
+      <bookmark href="https://rds.mws.sankuai.com/dba/sqlEditor?project_id=63193" id="101">
+        <title>POIMain</title>
+      </bookmark>
+      <bookmark href="https://km.sankuai.com/collabpage/2755473739" id="102">
+        <title>编辑-AOI审核业务 - 学城</title>
+      </bookmark>
+    </folder>
+    <folder id="25">
+      <title>POI校准查询</title>
+      <bookmark href="http://epassport.sankuai.com/bizacct/search" id="103">
+        <title>门店/帐号信息查询</title>
+      </bookmark>
+      <bookmark href="https://poiop.sankuai.com/audit/snapshot-search" id="104">
+        <title>1.0快照查询</title>
+      </bookmark>
+      <bookmark href="https://inpoiop.sankuai.com/auditV2/finish-workorder" id="105">
+        <title>2.0快照查询</title>
+      </bookmark>
+      <bookmark href="https://inpoiop.sankuai.com/auditV2/lightning/review-value-points-computed" id="106">
+        <title>任务价值分查询</title>
+      </bookmark>
+      <bookmark href="https://gongjiao.xiaojukeji.com/detail/0#city%3D4%26origin%3D121.44322%2C31.216128%26origin_name%3D%E5%A4%8D%E6%97%A6%E5%A4%A7%E5%AD%A6%E9%99%84%E5%B1%9E%E5%8D%8E%E5%B1%B1%E5%8C%BB%E9%99%A2%26destination%3D121.45565%2C31.24982%26destination_name%3D%E4%B8%8A%E6%B5%B7%E7%AB%99%26channel%3Dgj-abc--10000-20180615-20180624-4744%26departure_time_value%3D%E7%8E%B0%E5%9C%A8%26departure_time%3D1648863774%26strategy%3D4%26search_version%3D1%26maptype%3Dsoso%26imei%3Dd9d782da-e75b-40d7-b7c9-dbb6a713c1b2%26oid%3Dd9d782da-e75b-40d7-b7c9-dbb6a713c1b2%26g_poly%3D1%26traffic%3D1%26mode%3D0%26sug_origin%3D%26sug_destination%3D%26fromChanged%3Dtrue%26toChanged%3Dtrue%26strategy_value%3D%E6%8E%A8%E8%8D%90%E8%B7%AF%E7%BA%BF&amp;fid=RPSf840a66d740c5e69cd877d20bda42648&amp;seqnum=0&amp;logtype=5,1,5" id="107">
+        <title>滴滴公交</title>
+      </bookmark>
+    </folder>
+    <folder id="26">
+      <title>工作台链接</title>
+      <bookmark href="https://poiop.sankuai.com/audit/home" id="108">
+        <title>1.0工作台</title>
+      </bookmark>
+      <bookmark href="https://poiop.sankuai.com/auditV2/first-audit" id="109">
+        <title>2.0工作台</title>
+      </bookmark>
+      <bookmark href="https://poiop.sankuai.com/audit/single-accurate" id="110">
+        <title>单独校准工作台</title>
+      </bookmark>
+      <bookmark href="https://pdc.sankuai.com/category/categorytree/back" id="111">
+        <title>后台类目树管理</title>
+      </bookmark>
+      <bookmark href="https://paidian.sankuai.com/" id="112">
+        <title>众包工作台</title>
+      </bookmark>
+      <bookmark href="https://hephaestus-map.sankuai.com/#/indoor/pending" id="113">
+        <title>室内图绘制</title>
+      </bookmark>
+      <bookmark href="https://pdc.sankuai.com/tools/poi-lock/lock" id="114">
+        <title>锁定解锁</title>
+      </bookmark>
+      <bookmark href="https://pdc.sankuai.com/lingbao/scene/rule-list-v2" id="115">
+        <title>灵宝2.0</title>
+      </bookmark>
+      <bookmark href="https://poiop.sankuai.com/auditV2/lightning/phone-config" id="116">
+        <title>外显配置</title>
+      </bookmark>
+      <bookmark href="http://coral.poi.sankuai.com/wormhole/static/index.html#/ImportTask" id="117">
+        <title>撤销审核任务</title>
+      </bookmark>
+      <bookmark href="https://argus-map.sankuai.com/data-query/poi-search/list" id="118">
+        <title>Mis平台</title>
+      </bookmark>
+      <bookmark href="https://argus-map.sankuai.com/data-query/sources" id="119">
+        <title>竞品库</title>
+      </bookmark>
+      <bookmark href="https://intelligence-pdc.sankuai.com/pdc-intelligence-front/index.html#/intel/alterSubjectD" id="120">
+        <title>POI情报中心</title>
+      </bookmark>
+    </folder>
+    <folder id="27">
+      <title>权限配置</title>
+      <bookmark href="http://uac.vip.sankuai.com/app/635/role" id="121">
+        <title>1.0工作台权限系统</title>
+      </bookmark>
+      <bookmark href="https://poiop.sankuai.com/auditV2/user-admin?pageType=tenant&amp;tenantCode=PDC" id="122">
+        <title>人工作业平台2.0权限</title>
+      </bookmark>
+    </folder>
+  </folder>
+  <folder id="4">
+    <title>相关wiki</title>
+    <bookmark href="https://km.sankuai.com/collabpage/2742305478" id="28">
+      <title>交付组周报</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/page/319961521" id="29">
+      <title>审核业务分类</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/collabpage/2704429948" id="30">
+      <title>大模型知识搬运</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/collabpage/2703028297" id="31">
+      <title>各月审核量及审核成本-25年 - 学城</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/collabpage/2720959171" id="32">
+      <title>技术周报</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/collabpage/2743362157" id="33">
+      <title>2026年工单量级及满意度统计表 - 学城</title>
+    </bookmark>
+  </folder>
+  <folder id="5">
+    <title>对外流程</title>
+    <bookmark href="https://km.sankuai.com/page/128276259" id="35">
+      <title>业务对接 - 人力申请及排期流程</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/page/1067726866" id="36">
+      <title>业务承接评估标准及管理体系</title>
+    </bookmark>
+  </folder>
+  <folder id="6">
+    <title>学习</title>
+    <bookmark href="https://wenku.baidu.com/view/cff11a75bc64783e0912a21614791711cc7979fe.html" id="38">
+      <title>呼叫中心KPI指标 - 百度文库</title>
+    </bookmark>
+    <bookmark href="http://www.1ppt.com/" id="39">
+      <title>PPT模板_PPT模板下载_幻灯片模板下载_PPT模版免费下载 -【第一PPT】</title>
+    </bookmark>
+    <bookmark href="https://mp.neixin.cn/cms/content/article/2bA5hH12A4eHmw9lbuAKK19a0Ua1srpt" id="40">
+      <title>练好复盘基本功，避免“重复交学费”</title>
+    </bookmark>
+    <bookmark href="https://support.office.com/zh-cn/article/%E5%9C%A8-office-%E4%B8%AD%E7%9A%84%E8%B6%8B%E5%8A%BF%E7%BA%BF%E9%80%89%E9%A1%B9-92157920-fee4-4905-bc89-6a0f48152c52" id="41">
+      <title>在 Office 中的趋势线选项 - Office 支持</title>
+    </bookmark>
+    <bookmark href="http://www.excelapi.net/zh-cn/home/help" id="42">
+      <title>安装Excel API 函数库 - 辉耀Excel网络函数库</title>
+    </bookmark>
+    <bookmark href="http://www.woshipm.com/operate/913041.html" id="43">
+      <title>怎么才能做好团队管理｜方法论加模型案例（附常用管理模型、人员架构图） | 人人都是产品经理</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/page/151941812" id="44">
+      <title>各岗位（角色）工作SOP、Dashboard-副本</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/page/170762901" id="45">
+      <title>2019双周分享课程</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/page/219822330" id="46">
+      <title>【20191115】在线坐席人力逻辑</title>
+    </bookmark>
+    <bookmark href="https://www.toutiao.com/a6813247651685859854/?tt_from=copy_link&amp;utm_campaign=client_share&amp;timestamp=1586353604&amp;app=news_article_lite&amp;utm_source=copy_link&amp;utm_medium=toutiao_ios&amp;req_id=202004082146440100140470202975AFC8&amp;group_id=6813247651685859854" id="47">
+      <title>掌握这5个常用数据分析方法，做分析不再没思路</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/page/64420952" id="48">
+      <title>《管理百宝箱》（基层管理者版）</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/page/387927072" id="49">
+      <title>生产成本目标拆解</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/page/160467242" id="50">
+      <title>《用图表说话》</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/page/471860351" id="51">
+      <title>6 05 | 概率统计和排队论：做性能工作必须懂的数理基础</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/page/675960850" id="52">
+      <title>数据分析专栏-M魔数师</title>
+    </bookmark>
+    <bookmark href="https://baijiahao.baidu.com/s?id=1643547569909373200&amp;wfr=spider&amp;for=pc" id="53">
+      <title>产品设计心法：数据看板篇</title>
+    </bookmark>
+    <bookmark href="https://blog.csdn.net/ctrip_tech/article/details/53392069" id="54">
+      <title>携程是如何借助“预测式外呼”提高呼叫效率的_携程技术-CSDN博客_预测式外呼</title>
+    </bookmark>
+  </folder>
+  <folder id="7">
+    <title>维护wiki</title>
+    <bookmark href="https://km.sankuai.com/page/197976088" id="56">
+      <title>境内POI重要度分级方案</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/page/179072717" id="57">
+      <title>运营反馈需求（石家庄运营）</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/page/208707701?action=edit#" id="58">
+      <title>编辑-人工审核弹性承载能力实现方案</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/page/1308254088" id="59">
+      <title>智能质检</title>
+    </bookmark>
+  </folder>
+  <folder id="8">
+    <title>业务需求</title>
+    <bookmark href="https://km.sankuai.com/page/258045512" id="61">
+      <title>业务承接需求汇总</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/page/386214188" id="62">
+      <title>数据与工具产品通道晋升复盘文字版</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/page/209060723" id="63">
+      <title>新增流程来源统计</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/page/143533995" id="64">
+      <title>各岗位（角色）工作SOP、Dashboard（19版）</title>
+    </bookmark>
+  </folder>
+  <folder id="9">
+    <title>ROI结算</title>
+    <bookmark href="https://km.sankuai.com/page/367028803" id="65">
+      <title>IVR费用结算流程</title>
+    </bookmark>
+    <bookmark href="https://bi.sankuai.com/dashboard/55588" id="66">
+      <title>新增ROI监控-周报</title>
+    </bookmark>
+    <bookmark href="https://bi.sankuai.com/dashboard/55589" id="67">
+      <title>新增ROI监控-周报-分析</title>
+    </bookmark>
+    <bookmark href="https://bi.sankuai.com/dashboard/55369" id="68">
+      <title>下线ROI监控-周报</title>
+    </bookmark>
+    <bookmark href="https://bi.sankuai.com/dashboard/55469" id="69">
+      <title>下线ROI监控-周报-分析</title>
+    </bookmark>
+    <bookmark href="https://bi.sankuai.com/dashboard/55519" id="70">
+      <title>变更ROI监控-周报-分析</title>
+    </bookmark>
+    <bookmark href="https://bi.sankuai.com/dashboard/55509" id="71">
+      <title>变更ROI监控-周报</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/page/592477712" id="72">
+      <title>审核运营</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/page/480752133" id="73">
+      <title>支付费用记录</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/page/758218986" id="74">
+      <title>PDC单CASE成本核算表</title>
+    </bookmark>
+    <bookmark href="https://bi.sankuai.com/dashboard/54976" id="75">
+      <title>队列维度新增量审核量</title>
+    </bookmark>
+  </folder>
+  <folder id="10">
+    <title>模板</title>
+    <bookmark href="https://km.sankuai.com/page/1335140592" id="76">
+      <title>人审需求模板</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/page/1337450582" id="77">
+      <title>业务承接必坑指南</title>
+    </bookmark>
+  </folder>
+  <folder id="11">
+    <title>审核预算</title>
+    <bookmark href="https://km.sankuai.com/collabpage/1387987033" id="78">
+      <title>2023年项目规划 - 预算版</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/collabpage/1394663891" id="79">
+      <title>0-2023年运营计划时间安排</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/collabpage/1381284843" id="80">
+      <title>1-PDC费用情况</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/collabpage/1392042116" id="81">
+      <title>2023年生态OP</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/page/1392412829" id="82">
+      <title>2023年 众包C端S端进审核提报量</title>
+    </bookmark>
+  </folder>
+  <folder id="12">
+    <title>工具运营sop</title>
+    <bookmark href="https://km.sankuai.com/collabpage/1612353914" id="83">
+      <title>运营自主配置功能对接流程</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/page/411516139" id="84">
+      <title>[增-数据导入]新工作台电话核实导入教程</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/page/1328284588" id="85">
+      <title>[删-数据撤销]批量撤销审核工单</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/collabpage/1713925486" id="86">
+      <title>人审需求承接标准化流程2.0</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/collabpage/1534199409" id="87">
+      <title>2023年需求</title>
+    </bookmark>
+  </folder>
+  <folder id="34">
+    <title>模型机器人</title>
+    <bookmark href="https://aigc.sankuai.com/assistant/chat" id="123">
+      <title>小美智能助理</title>
+    </bookmark>
+    <bookmark href="https://ba-ai.sankuai.com/" id="124">
+      <title>商业分析助手</title>
+    </bookmark>
+  </folder>
+  <folder id="37">
+    <title>工作量统计</title>
+    <bookmark href="https://km.sankuai.com/collabpage/2734634271" id="125">
+      <title>POI审核质效运营组-工作量统计机制 - 学城</title>
+    </bookmark>
+    <bookmark href="https://ones.sankuai.com/ones/user/userIndex?workbenchTab=workTime&amp;dateRange=1772356287000,1774948287000" id="126">
+      <title>工作量统计</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/collabpage/2749200165" id="127">
+      <title>审核质效组2026M2W3 (2.5-2.25) - 学城</title>
+    </bookmark>
+  </folder>
+  <folder id="55">
+    <title>月度成本</title>
+    <bookmark href="https://km.sankuai.com/collabpage/2748113232" id="128">
+      <title>1.人工（审核&amp;评测）费用公示-2026年 - 学城</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/collabpage/2734021102" id="129">
+      <title>预算及HC - 学城</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/collabpage/2742133141" id="130">
+      <title>OP2 - 学城</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/collabpage/2740010060" id="131">
+      <title>2026年兼职标效更新记录</title>
+    </bookmark>
+    <bookmark href="https://bi.sankuai.com/portal/23354?type=dashboard&amp;id=159456" id="132">
+      <title>人审业务成本监控</title>
+    </bookmark>
+    <bookmark href="https://bi.sankuai.com/portal/23354?type=dashboard&amp;id=168978" id="133">
+      <title>2.0报错业务监控</title>
+    </bookmark>
+  </folder>
+  <folder id="60">
+    <title>🦞学习</title>
+    <bookmark href="https://km.sankuai.com/collabpage/2750418963" id="134">
+      <title>从零到 AI Agent 军团：一文彻底拆解智能体构建全流程（0312版） - 学城</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/collabpage/2750917050" id="135">
+      <title>🦞从&quot;对话框&quot;到&quot;分析团队&quot;：小龙虾（CatClaw）高阶驯化与实战指南 - 学城</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/collabpage/2729445764" id="136">
+      <title>【使用攻略】团子老师一键开讲 - 学城</title>
+    </bookmark>
+    <bookmark href="https://daxue.sankuai.com/personal.html#!/courseCenter/course?course_id=207070" id="137">
+      <title>人与Agent协作范式</title>
+    </bookmark>
+    <bookmark href="https://yuntu.sankuai.com/v3/widget/widget-c8b986cb-3e7f-414e-a6d9-d88b27edccc9/view" id="138">
+      <title>团队成员CatPaw使用情况</title>
+    </bookmark>
+  </folder>
+</folder>
+<folder id="2">
+  <title>Other Bookmarks</title>
+  <bookmark href="https://kms.ikxin.com/zh-cn/activate/windows" id="13">
+    <title>激活 Windows - KMS Tools - 一站式 KMS 工具箱</title>
+  </bookmark>
+  <bookmark href="https://otp.landian.vip/zh-cn/" id="14">
+    <title>Office Tool Plus 官方网站 - 一键部署 Office</title>
+  </bookmark>
+  <bookmark href="https://www.json.cn/" id="15">
+    <title>JSON在线解析及格式化验证 - JSON.cn</title>
+  </bookmark>
+  <bookmark href="https://cloud.heytap.com/login.html?callback=https%3A%2F%2Fcloud.heytap.com%2F" id="16">
+    <title>找人手机定位</title>
+  </bookmark>
+  <bookmark href="https://kms.ikxin.com/zh-cn/activate/windows" id="17">
+    <title>激活 Windows - KMS Tools - 一站式 KMS 工具箱</title>
+  </bookmark>
+  <bookmark href="https://otp.landian.vip/zh-cn/" id="18">
+    <title>Office Tool Plus 官方网站 - 一键部署 Office</title>
+  </bookmark>
+  <bookmark href="https://www.json.cn/" id="19">
+    <title>JSON在线解析及格式化验证 - JSON.cn</title>
+  </bookmark>
+  <bookmark href="https://cloud.heytap.com/login.html?callback=https%3A%2F%2Fcloud.heytap.com%2F" id="20">
+    <title>找人手机定位</title>
+  </bookmark>
+</folder>
+</xbel>
