@@ -296,6 +296,9 @@ function parseBookmarks(rawText) {
     throw new Error('书签文件不是有效的 JSON 格式。请检查 Floccus 配置中文件后缀是否为 .json');
   }
 
+  // Empty array = no bookmarks synced yet (not an error)
+  if (Array.isArray(data) && data.length === 0) return [];
+
   // Try each format
   let bookmarks = parseFlatFormat(data);
   if (bookmarks) return bookmarks;
@@ -400,7 +403,7 @@ function renderTree(root) {
   const total = countTotal(root);
 
   if (total === 0) {
-    content.innerHTML = `<div class="empty"><div class="icon">🔍</div><p>没有找到匹配的书签</p></div>`;
+    content.innerHTML = `<div class="empty"><div class="icon">📭</div><p>还没有书签数据</p><p style="font-size:12px;margin-top:8px">等待 Floccus 首次同步<br>安装 Floccus 扩展并同步后，这里就会自动显示你的书签啦~</p></div>`;
     document.getElementById('visible-count').textContent = '0';
     return;
   }
