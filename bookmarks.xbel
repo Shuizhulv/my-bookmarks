@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xbel PUBLIC "+//IDN python.org//DTD XML Bookmark Exchange Language 1.0//EN//XML" "http://pyxml.sourceforge.net/topics/dtds/xbel.dtd">
 <xbel version="1.0">
-<!--- highestId :140: for Floccus bookmark sync browser extension -->
+<!--- highestId :154: for Floccus bookmark sync browser extension -->
 
 <folder id="1">
   <title>Bookmarks Bar</title>
@@ -123,6 +123,12 @@
       <bookmark href="https://intelligence-pdc.sankuai.com/pdc-intelligence-front/index.html#/intel/alterSubjectD" id="120">
         <title>POI情报中心</title>
       </bookmark>
+      <bookmark href="https://pdc.sankuai.com/category/shopcategory/correct" id="141">
+        <title>乐高平台</title>
+      </bookmark>
+      <bookmark href="https://pdc.sankuai.com/dataflow/message-content" id="142">
+        <title>文案配置中心</title>
+      </bookmark>
     </folder>
     <folder id="27">
       <title>权限配置</title>
@@ -132,7 +138,13 @@
       <bookmark href="https://poiop.sankuai.com/auditV2/user-admin?pageType=tenant&amp;tenantCode=PDC" id="122">
         <title>人工作业平台2.0权限</title>
       </bookmark>
+      <bookmark href="https://data.sankuai.com/project-space/#/manage/member/poi-audit" id="143">
+        <title>工作组加人</title>
+      </bookmark>
     </folder>
+    <bookmark href="https://bi.sankuai.com/v2/sql/edit?projectId=106061" id="144">
+      <title>SQL查询-V2</title>
+    </bookmark>
   </folder>
   <folder id="4">
     <title>相关wiki</title>
@@ -153,6 +165,9 @@
     </bookmark>
     <bookmark href="https://km.sankuai.com/collabpage/2743362157" id="33">
       <title>2026年工单量级及满意度统计表 - 学城</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/collabpage/2751425318" id="145">
+      <title>老板周报</title>
     </bookmark>
   </folder>
   <folder id="5">
@@ -337,9 +352,6 @@
     <bookmark href="https://ba-ai.sankuai.com/" id="124">
       <title>商业分析助手</title>
     </bookmark>
-    <bookmark href="https://nocode.sankuai.com/#/chat?pageId=tbvnffpcaqz5nu88" id="139">
-      <title>审核成本数据公示（复制）</title>
-    </bookmark>
   </folder>
   <folder id="37">
     <title>工作量统计</title>
@@ -393,6 +405,36 @@
     </bookmark>
     <bookmark href="https://yuntu.sankuai.com/v3/widget/widget-c8b986cb-3e7f-414e-a6d9-d88b27edccc9/view" id="138">
       <title>团队成员CatPaw使用情况</title>
+    </bookmark>
+    <folder id="146">
+      <title>nocode看板</title>
+      <bookmark href="https://fqvc5n.mynocode.host/" id="151">
+        <title>博哥看板</title>
+      </bookmark>
+      <bookmark href="https://timeline-role-define.mynocode.host/" id="152">
+        <title>我的看板</title>
+      </bookmark>
+      <bookmark href="https://data-viewer-hub-mtd.mynocode.host/" id="153">
+        <title>POI 流程模版指标看板</title>
+      </bookmark>
+    </folder>
+    <folder id="147">
+      <title>nocode编辑</title>
+      <bookmark href="https://nocode.sankuai.com/#/chat?pageId=cli-qho57to5yn35esry" id="154">
+        <title>博哥看板</title>
+      </bookmark>
+      <bookmark href="https://nocode.sankuai.com/#/chat?pageId=tbvnffpcaqz5nu88" id="139">
+        <title>我的看板</title>
+      </bookmark>
+    </folder>
+    <bookmark href="https://km.sankuai.com/collabpage/2784293501" id="148">
+      <title>POI审核Agent快速配置（以营业状态审核Agent为例） - 学城</title>
+    </bookmark>
+    <bookmark href="https://console.catpaw.sankuai.com/credit-hub" id="149">
+      <title>Credit Hub - CatPaw Console</title>
+    </bookmark>
+    <bookmark href="https://km.sankuai.com/collabpage/1978758227" id="150">
+      <title>审核流程源管理 - 学城</title>
     </bookmark>
   </folder>
 </folder>
